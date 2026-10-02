@@ -125,7 +125,7 @@ function renderModules(){
  else if(state.stage==='infra'){list=names.filter(k=>!MODS[k].levels.length);title='Infrastructure & feedback';desc='Confirmed findings and reusable patterns connect one analysis to the next.';index='CROSS-CUTTING';}
  else{stage=STAGES.find(s=>String(s.id)===state.stage);list=stage.modules;title=stage.name;desc=stage.tagline;index='LEVEL '+stage.id+' / ANALYSIS STAGE';}
  let html=heading(index,title,desc,`${list.length} module${list.length===1?'':'s'}`);
- if(stage?.gap)html+=`<div class="stage-note">${esc(stage.note?stage.note+' · ':'')}${esc(stage.gap)}</div>`;
+
  if(!list.length)return html+`<div class="empty-results">${icon('search')}<h3>No matching modules.</h3><p>Try an architecture such as ARM64, or a capability such as taint.</p><button class="primary-button" id="reset-search">Clear search</button></div>`;
  html+=`<div class="module-grid">${list.map(card).join('')}</div>`;
  if(stage){const n=STAGES.indexOf(stage);html+=`<div class="stage-output"><h3>PASSES TO THE NEXT STAGE</h3><p>${esc(stage.passes)}</p></div><div class="next-stage">${n?`<button data-stage="${STAGES[n-1].id}">${icon('back')}Previous stage</button>`:'<span></span>'}${n<STAGES.length-1?`<button data-stage="${STAGES[n+1].id}">Next: ${esc(STAGES[n+1].name)}${icon('arrow')}</button>`:`<button data-select="finding_registry">Inspect the findings registry${icon('loop')}</button>`}</div>`;}
