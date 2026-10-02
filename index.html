@@ -81,8 +81,8 @@ const state={view:'pipeline',stage:'overview',selected:null,query:'',scope:'neig
 let lastTrigger=null,lastTriggerModule=null,modalWasOpen=false,graphApi=null,toastTimer=null,searchTimer=null;
 const moduleHistory=[];
 const narrow=matchMedia('(max-width:1199px)');
-$('#stat-modules').textContent=names.length;
-$('#stat-links').textContent=LINKS.length;
+const _sm=$('#stat-modules');if(_sm)_sm.textContent=names.length;
+const _sl=$('#stat-links');if(_sl)_sl.textContent=LINKS.length;
 function readHash(){
  const q=new URLSearchParams(location.hash.slice(1));
  state.view=q.get('view')==='graph'?'graph':'pipeline';
